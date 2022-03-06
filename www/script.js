@@ -27,7 +27,7 @@ const ROOM_ID = (() => {
 })();
 
 const USE_AUDIO = true;
-const USE_VIDEO = true;
+const USE_VIDEO = false;
 
 let signalingSocket = null; /* our socket.io connection to our webserver */
 let localMediaStream = null; /* our own microphone / webcam */
@@ -201,10 +201,11 @@ function setupLocalMedia(callback, errorback) {
 				App.audioDevices = devices.filter((device) => device.kind === "audioinput" && device.deviceId !== "default");
 			});
 			//to disable video
-			localMediaStream.getVideoTracks()[0].enabled = false
+			// localMediaStream.getVideoTracks()[0].enabled = false
 			App.videoEnabled = false
 		})
-		.catch(() => {
+		.catch((error) => {
+			console.log(error)
 			/* user denied access to a/v */
 			alert("This site will not work without camera/microphone access.");
 			if (errorback) errorback();
