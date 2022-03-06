@@ -7,7 +7,7 @@ const App = new Vue({
 		videoDevices: [],
 		audioDevices: [],
 		audioEnabled: true,
-		videoEnabled: true,
+		videoEnabled: false,
 		screenshareEnabled: false,
 		showIntro: true,
 		showChat: false,
@@ -39,6 +39,9 @@ const App = new Vue({
 			e.stopPropagation();
 			localMediaStream.getVideoTracks()[0].enabled = !localMediaStream.getVideoTracks()[0].enabled;
 			this.videoEnabled = !this.videoEnabled;
+			//to disable video
+			localMediaStream.getVideoTracks()[0].enabled = false
+			this.videoEnabled = false
 		},
 		toggleSelfVideoMirror: function() {
 			document.querySelector("#videos .video #selfVideo").classList.toggle("mirror");

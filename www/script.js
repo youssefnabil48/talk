@@ -200,9 +200,9 @@ function setupLocalMedia(callback, errorback) {
 				App.videoDevices = devices.filter((device) => device.kind === "videoinput" && device.deviceId !== "default");
 				App.audioDevices = devices.filter((device) => device.kind === "audioinput" && device.deviceId !== "default");
 			});
-			//set camera to be by default off
-			// localMediaStream.getVideoTracks()[0].enabled = !localMediaStream.getVideoTracks()[0].enabled;
-			// App.videoEnabled = !App.videoEnabled;
+			//to disable video
+			localMediaStream.getVideoTracks()[0].enabled = false
+			App.videoEnabled = false
 		})
 		.catch(() => {
 			/* user denied access to a/v */
